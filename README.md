@@ -1,5 +1,5 @@
 # ToDoList-API
-learning how to implement Todo List API using C#
+Implement Todo List API using C#
 
 ## TodoItem Schema
 
