@@ -1,7 +1,7 @@
 # ToDoList-API
 learning how to implement Todo List API using C#
 
-## TodoItem Schema:
+## TodoItem Schema
 
 ```
   TodoItem{
