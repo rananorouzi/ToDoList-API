@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using TodoListApi.Models;
 
 namespace TodoListApi.Controllers
@@ -75,9 +76,19 @@ namespace TodoListApi.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
+            if (String.IsNullOrEmpty(todoItem.Name))
+            {
+                var MaxId = _context.TodoItems.OrderByDescending(u => u.Id).FirstOrDefault();
+                int NewId = 1;
+                if ( MaxId != null){
+
+                     NewId = (int)(MaxId.Id + 1);
+                }
+                todoItem.Name = "New task "+NewId;
+            }
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
-
+            
             return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
         }
 
