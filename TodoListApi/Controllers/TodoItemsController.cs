@@ -42,7 +42,6 @@ namespace TodoListApi.Controllers
         }
 
         // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
@@ -73,7 +72,6 @@ namespace TodoListApi.Controllers
         }
 
         // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
@@ -103,5 +101,14 @@ namespace TodoListApi.Controllers
         {
             return _context.TodoItems.Any(e => e.Id == id);
         }
+        // GET: api/TodoItems/pendings
+        [Route("pendings")]
+        [HttpGet]
+        public IEnumerable<TodoItem> GetTodoItemsPendings()
+        {
+            var todoItem = _context.TodoItems.Where(c => c.Pending == true);
+            return todoItem.AsEnumerable();
+        }
+
     }
 }
