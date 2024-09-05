@@ -109,6 +109,15 @@ namespace TodoListApi.Controllers
             var todoItem = _context.TodoItems.Where(c => c.Pending == true);
             return todoItem.AsEnumerable();
         }
+        
+        // GET: api/TodoItems/pendings
+        [Route("completed")]
+        [HttpGet]
+        public IEnumerable<TodoItem> GetTodoItemsCompleted()
+        {
+            var todoItem = _context.TodoItems.Where(c => c.IsComplete == true);
+            return todoItem.AsEnumerable();
+        }
 
     }
 }

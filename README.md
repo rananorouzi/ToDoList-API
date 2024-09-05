@@ -19,6 +19,7 @@ learning how to implement Todo List API using C#
   /api/TodoItems
   /api/TodoItems/{id}
   /api/TodoItems/pendings
+  /api/TodoItems/completed
   ```
 ### Method POST
   ```
